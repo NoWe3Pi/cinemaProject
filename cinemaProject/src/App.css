@@ -1,0 +1,226 @@
+html,
+body {
+  background: radial-gradient(
+      circle at center,
+      #1b263b 0%,
+      #0d1b2a 50%,
+      #010811 100%
+    )
+    no-repeat;
+  color: white;
+
+  background-attachment: fixed;
+  background-size: cover;
+  text-align: center;
+}
+/* */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Очень рекомендую добавить это свойство */
+}
+
+/* Переопределяем стили для всех интерактивных элементов */
+button,
+input,
+select,
+textarea {
+  color: #ffffff; /* Принудительно делаем текст белым */
+  font-family: inherit; /* Чтобы шрифт не слетал на стандартный браузерный */
+  font-size: 1.15rem;
+}
+button {
+  background: grey;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+/* Офрмление отступов*/
+h2 {
+  font-size: 2.5rem;
+  margin: 1.25rem 0;
+  text-align: center;
+}
+
+/* Базовое состояние панели (она спрятана внизу под экраном) */
+.booking-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8rem;
+  background: #1a1a1a;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+
+  /* 1. Сдвигаем панель на 100% её высоты вниз (прячем за экран) */
+  transform: translateY(100%);
+  /* 2. Включаем плавность анимации для любых изменений на 0.3 секунды */
+  transition: transform 0.3s ease-in-out;
+}
+/* Состояние, когда панель активна (пользователь выбрал место) */
+.booking-panel.active {
+  /* Возвращаем панель в исходное положение на экран */
+  transform: translateY(0);
+}
+body.booking-panel-open .cinema-container {
+  padding-bottom: 140px;
+}
+
+.booking-panel-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.booking-seats {
+  padding: 1rem 0;
+  font-size: 2rem;
+}
+
+.priceAndButton {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.booking-price {
+  grid-column: 2;
+}
+
+.booking-btn {
+  font-size: 1.5rem;
+  /* Указываем кнопке занять третью колонку */
+  grid-column: 3;
+  /* Прижимаем саму кнопку к правому краю её колонки */
+  justify-self: end;
+  /*Отступ кнопки*/
+  margin-right: 2rem;
+}
+
+/* */
+.cinema-container {
+  max-width: 1200px;
+  width: 100%; /* Чтобы контейнер оставался адаптивным на маленьких экранах */
+  margin: 0 auto;
+}
+
+.grid-seats {
+  display: grid;
+  grid-template: repeat(2, 7.5rem) / repeat(5, 7.5rem);
+  grid-auto-rows: 7.5rem;
+  justify-content: center;
+  gap: 1rem;
+}
+.seat-base {
+  padding: 0; /* Убираем отступы, чтобы текст не сжимался */
+
+  border: none; /* Убираем стандартную рамку кнопки */
+
+  /*Делаю сетку grid для расположения внутри квадратов*/
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  border-radius: 50%;
+  background: none;
+}
+
+.selected {
+  background-color: green;
+}
+.grey-block-noActive {
+  background-color: grey;
+}
+.vip {
+  grid-column: 2 / 5;
+  border-radius: 25%;
+}
+
+/* Изначально окно полностью невидимо */
+.modal-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  opacity: 1; /*делает элемент полностью НЕвидимым */
+  visibility: hidden; /*•  делает элемент «призраком». Он становится абсолютно неосязаемым для мышки. Клик проходит сквозь него насквозь.
+*/
+
+  /* 2. Включаем плавность анимации для любых изменений на 0.3 секунды */
+  transition:
+    transform 0.3s ease-in-out,
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    #1b263b 0%,
+    #0d1b2a 50%,
+    #010811 100%
+  );
+}
+.modal-overlay.active {
+  /* transform: translateY(0); */
+  opacity: 1; /*делает элемент полностью видимым */
+  visibility: visible; /*делает элемент осязаемым. Мышка его видит, на кнопки внутри него можно нажимать. */
+}
+
+/* //Сетка grid Для иконок оплаты */
+.card-option {
+  display: grid;
+  grid-template: auto / repeat(4, auto);
+  gap: 15px;
+  justify-content: center;
+}
+/* .card-option p {
+  
+} */
+.payment-card {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.payment-card.active {
+  border-color: #ff3b30; /* Красная рамка (как на сайте Рамблер/Алмаз) */
+  background-color: rgba(
+    59,
+    130,
+    246,
+    0.15
+  ); /* Легкий, еле заметный фон внутри */
+  box-shadow: 1px 1px 1px 1px #ff3b30; /* Делает рамку визуально чуть толще и четче */
+}
+
+.inptStl {
+  color: royalblue;
+  margin-top: 1.25rem;
+  padding: 0.25rem;
+}
+.inptStl:focus {
+  border-color: blue; /* Меняем цвет рамки на синий */
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.45); /* Добавляем мягкое свечение */
+  outline: none; /* 1. Прячем стандартную браузерную желтую рамку */
+}
+
+.svg-seat {
+  fill: burlywood;
+
+  /* Создаем аккуратные светлые линии-контуры вокруг кресла */
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-width: 0.6px;
+  width: 5.5rem;
+  height: 5.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.seat-base.grey-block-noActive .svg-seat {
+  cursor: default;
+}
+
+.seat-base.vip:disabled .svg-seat {
+  cursor: none;
+}
+/* .seat-number {
+} */
