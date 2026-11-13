@@ -20,19 +20,19 @@ export default function App() {
     inputRef,
     handleFocus,
     returnNow,
-    selectedMethod,
-    setSelectedMethod,
+    sberMethod,
+    setSberMethod,
     paynow,
     setPaynow,
     totalPrice,
   } = useBooking();
 
   return (
-    <div>
+    <div className="HTML">
       {/* //Кинозал Оформление */}
       <main
         className="cinema-container"
-        style={{ paddingBottom: selectedSeat.length > 0 ? "100px" : "0px" }}
+        style={{ paddingBottom: selectedSeat.length > 0 ? "10rem" : "0px" }}
       >
         <h2>{state.movieName}</h2>
         <div className="grid-seats">
@@ -108,11 +108,11 @@ export default function App() {
                 <div
                   key={card.id}
                   className={
-                    card.id === selectedMethod
+                    card.id === sberMethod
                       ? "payment-card active"
                       : "payment-card"
                   }
-                  onClick={() => setSelectedMethod(card.id)}
+                  onClick={() => setSberMethod(card.id)}
                 >
                   <span>{card.icon}</span>
                   <p>{card.title}</p>
@@ -123,6 +123,7 @@ export default function App() {
 
           {/* noValidate- можно добавить атрибутом к форме, тогда не будет появляться ошибка отсутсвия ввода @ */}
           <form
+            className="checkout-form"
             onSubmit={(e) => {
               e.preventDefault();
 
@@ -153,7 +154,7 @@ export default function App() {
               onChange={handleFocus}
               ref={inputRef}
             />
-            <button style={{ marginLeft: "7px" }}>Оплатить</button>
+            <button className="puyButton">Оплатить</button>
           </form>
         </div>
       </div>
@@ -165,7 +166,9 @@ export default function App() {
         style={paynow ? { transition: "none" } : {}}
       >
         <h2>Спасибо за заказ!</h2>
-        <button onClick={returnNow}>Вернуться в зал</button>
+        <button className="puyButton" onClick={returnNow}>
+          Вернуться в зал
+        </button>
       </div>
     </div>
   );

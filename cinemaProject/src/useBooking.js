@@ -40,35 +40,36 @@ function reducer(state, action) {
 }
 
 export function useBooking() {
+  //Инпут
   const [nameInput, setNameInput] = useState("");
-  //Для инпута, чтобы связать с кнопкой и сделать автофокус
-  const inputRef = useRef(null);
   //ДЛЯ ОКНА ПОСЛЕ КЛИКА НА ОПЛАТИТЬ
   const [paynow, setPaynow] = useState(false);
 
+  //Модальное окно
+  const [isModalActive, setIsModalActive] = useState(false);
+
+  const [sberMethod, setSberMethod] = useState("sber");
+
   const [state, dispatch] = useReducer(reducer, bookingInitData);
+
+  //РЕФЫ. Для инпута, чтобы связать с кнопкой и сделать автофокус
+  const inputRef = useRef(null);
   //создаем ключ current с пустым объектов внутри для наполнения разными таймерами
   const timersRef = useRef({});
+
   const selectedSeat = state.seats.filter((seat) => seat.status === "выбрано");
 
   const closeSeat = state.seats.filter((seat) => seat.status === "занято");
 
-  const [isModalActive, setIsModalActive] = useState(false);
-
-  const [selectedMethod, setSelectedMethod] = useState("sber");
-
-  //Цена выбранного места
+  //Цена выбранного места.Сумма в интерактивном меню  экрана(1) мест
   const totalPrice = selectedSeat.reduce(
     (total, soul) => total + soul.price,
     0,
   );
 
-  const handleFocus = useCallback(
-    (e) => {
-      setNameInput(e.target.value.toLowerCase());
-    },
-    [setNameInput],
-  );
+  const handleFocus = useCallback((e) => {
+    setNameInput(e.target.value.toLowerCase());
+  }, []);
 
   const returnNow = useCallback(() => {
     setPaynow(false);
@@ -129,8 +130,8 @@ export function useBooking() {
     inputRef,
     handleFocus,
     returnNow,
-    selectedMethod,
-    setSelectedMethod,
+    sberMethod,
+    setSberMethod,
     paynow,
     setPaynow,
     totalPrice,
