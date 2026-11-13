@@ -102,14 +102,6 @@ body.booking-panel-open .cinema-container {
 
 /* */
 .cinema-container {
-  max-width: 1200px;
-  width: 100%; /* Чтобы контейнер оставался адаптивным на маленьких экранах */
-  margin: 0 auto;
-  /* Добавляем центрирование и защиту от вылезания за края */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
   padding-top: 15vh;
 }
 
@@ -186,11 +178,11 @@ body.booking-panel-open .cinema-container {
 /* //Сетка grid Для иконок оплаты */
 .card-option {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(7rem, 12rem));
   grid-auto-rows: clamp(7rem, 20vw, 12rem);
   gap: clamp(0.4rem, 1.5vw, 1rem);
   justify-content: center;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 @media (max-width: 510px) {
   .card-option {
