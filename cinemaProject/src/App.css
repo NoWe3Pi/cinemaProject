@@ -181,19 +181,18 @@ body.booking-panel-open .cinema-container {
 /* //Сетка grid Для иконок оплаты */
 .card-option {
   display: grid;
-  /* Ширина: на мобилке минимум 4.rem, на ПК возвращается к вашим 12rem */
-  --card-w: clamp(7rem, 20vw, 12rem);
-  /* Высота: на мобилке минимум 2rem, на ПК возвращается к вашим 15rem */
-  --card-h: clamp(7rem, 20vw, 10rem);
-  grid-template: var(--card-w) / repeat(auto-fit, minmax(var(--card-h), 1fr));
-
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: clamp(7rem, 20vw, 12rem);
   gap: clamp(0.4rem, 1.5vw, 1rem);
   justify-content: center;
   padding: 0 1rem;
 }
-/* .card-option p {
-  
-} */
+@media (max-width: 510px) {
+  .card-option {
+    grid-template-columns: repeat(2, 0.3fr);
+  }
+}
+
 .payment-card {
   border: 1px solid #ccc;
   border-radius: 12px;
