@@ -165,10 +165,12 @@ export default function App() {
         className={paynow ? "modal-overlay active" : "modal-overlay"}
         style={paynow ? { transition: "none" } : {}}
       >
-        <h2>Спасибо за заказ!</h2>
-        <button className="puyButton" onClick={returnNow}>
-          Вернуться в зал
-        </button>
+        <div className="modal-overlay-GroupContent">
+          <h2>Спасибо за заказ!</h2>
+          <button className="puyButton" onClick={returnNow}>
+            Вернуться в зал
+          </button>
+        </div>
       </div>
     </div>
   );

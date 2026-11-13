@@ -105,13 +105,12 @@ body.booking-panel-open .cinema-container {
   max-width: 1200px;
   width: 100%; /* Чтобы контейнер оставался адаптивным на маленьких экранах */
   margin: 0 auto;
-
   /* Добавляем центрирование и защиту от вылезания за края */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 1rem;
   box-sizing: border-box;
+  padding-top: 15vh;
 }
 
 .grid-seats {
@@ -177,6 +176,12 @@ body.booking-panel-open .cinema-container {
   opacity: 1; /*делает элемент полностью видимым */
   visibility: visible; /*делает элемент осязаемым. Мышка его видит, на кнопки внутри него можно нажимать. */
 }
+.modal-overlay-GroupContent {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15vh;
+  align-items: center;
+}
 
 /* //Сетка grid Для иконок оплаты */
 .card-option {
@@ -190,6 +195,7 @@ body.booking-panel-open .cinema-container {
 @media (max-width: 510px) {
   .card-option {
     grid-template-columns: repeat(2, 0.3fr);
+    gap: 1rem;
   }
 }
 
@@ -214,6 +220,13 @@ body.booking-panel-open .cinema-container {
   ); /* Легкий, еле заметный фон внутри */
   box-shadow: 1px 1px 1px 1px #ff3b30; /* Делает рамку визуально чуть толще и четче */
 }
+
+.paymentPage {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15vh;
+}
+
 .checkout-form {
   margin-top: 2.5rem;
 }
